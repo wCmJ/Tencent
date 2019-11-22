@@ -1,0 +1,23 @@
+Google Protocol Buffer is a standard of mix of language and data in Google.
+It is used for RPC system and long-time data storage system.
+structure:
+    import "other.proto";
+    package filename;
+    //type:     bool/int32/float/double/string
+    //attribute:required/optional/repeated
+    message name{
+        attribute type name1 = 1;
+        attribute type name2 = 2;    
+        enum enumtype{
+            item1 = 0;
+            item2 = 1;
+            item3 = 2;
+        }
+        message nested{
+            attribute enumtype name3 = 2 [default = HOME];
+        }
+        repeated nested nest = 4;
+    }
+    
+
+
