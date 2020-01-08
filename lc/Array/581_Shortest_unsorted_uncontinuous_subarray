@@ -1,0 +1,10 @@
+question:
+    return the shortest length in the array that should be re-sorted to make array ascending.
+1.按照从左至右的方向，找到第一个满足条件(该元素大于它的后一个元素)的元素A
+2.按照从右至左的方向，找到第一个满足条件(该元素小于它的前一个元素)的元素B
+3.如果index(A)<index(B),则进入4；否则，进入8.
+4.找出A和B中的最大值max和最小值min；
+5.找出位于A前面的大于min的最靠左元素的位置；
+6.找出位于B后面的小于max的最靠右元素的位置。
+7.最左元素和最有元素即为该子数组，返回其中元素的个数。
+8.返回0.
