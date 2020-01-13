@@ -94,7 +94,5 @@ namespace GRAPH{
 				int& fTime(int i){return v[i].fTime;}
 				int& parent(int i){return v[i].parent;}
 				int& priority(int i){return v[i].priority;}
-
     };
-
 }
