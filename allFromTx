@@ -42,7 +42,7 @@ GSLB:global server load balance
 	基于硬件设备
 	基于重定向
 
-腾讯GSLB：基于DNS，实现用户就近接入，全局流量调度的负载均衡系统。
+GSLB：基于DNS，实现用户就近接入，全局流量调度的负载均衡系统。
 组成模块：DNS模块/IP地址库模块/IDC测速模块/DB模块/CC模块/WEB模块/
 	IP地址库模块：
 		包含全球 各个国家地区 IP地址信息， 中国部分精确到省份、运营商。GSLB仅能够看到运营商的LocalDNS，
