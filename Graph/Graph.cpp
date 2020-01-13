@@ -84,6 +84,19 @@ namespace GRAPH{
 					v[i].outDegree++;
 					v[j].inDegree++;
 				}
+				
+        //remove edge
+				Te remove(int i, int j)
+				{
+						//Te eBak = E[i][j];
+            Te eBak = edge(i, j);
+            delete E[i][j];
+            E[i][j] = NULL;
+				    e--;
+            v[i].outDegree--;
+            v[j].inDegree--;
+				    return eBak;
+				}
 
 
 				Tv& vertex(int i){return v[i].data;}
