@@ -34,6 +34,14 @@ codes:
             }
             s.push(i);
         }
+        while(!s.empty())
+        {
+            int high = nums[s.top()];
+            s.pop();
+            int right = nums.size();
+            int left = s.empty() ? -1 : s.top();
+            result = max(result, high * (right - left - 1));                                                               
+        }
         return result;
     }
     int maxOfRectangle(const vector<vector<char>> v)
