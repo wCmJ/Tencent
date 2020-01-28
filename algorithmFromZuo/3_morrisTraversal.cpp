@@ -5,7 +5,7 @@ struct BTN{
     BTN(int v):val(v),left(NULL),right(NULL){}
 };
 
-void monotonicTraversal(BTN *head)
+void morrisTraversal(BTN *head)
 {
     if(head == NULL)
         return;
