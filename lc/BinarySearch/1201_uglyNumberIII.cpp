@@ -34,6 +34,3 @@ int uglyNumber(int n, int a, int b, int c)
     }
     return left;
 }
-
-
-
