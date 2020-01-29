@@ -21,6 +21,8 @@ string reverse(string s)
         char t = s[ti];
         s[ti] = s[tj];
         s[tj] = t;
+        ++ti;
+        --tj;
     }
     
     //copy word
