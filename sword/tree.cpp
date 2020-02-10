@@ -3,9 +3,12 @@
 
 namespace traversal{
     /*
-        first: recursive
-        second: loop with stack
-        third: morris traversal    
+        preorder/inorder/postorder
+            first: recursive
+            second: loop with stack
+            third: morris traversal  
+        bfs
+        dfs
     */
     struct treeNode{
         int val;
@@ -198,4 +201,54 @@ namespace traversal{
         }
         printReverse(tmp);
     }
+    
+    void bfs(treeNode *root){
+        if(NULL == root)return;
+        std::queue<treeNode*> sq;
+        sq.push(root);
+        while(!sq.empty()){
+            treeNode *tmp = sq.front();
+            sq.pop();
+            std::cout<<tmp->val<<" ";
+            if(tmp->left)sq.push(tmp->left);
+            if(tmp->right)sq.push(tmp->right);
+        }           
+    }        
+    void bfsWithEnter(treeNode *root){
+        if(NULL == root)return;
+        treeNode *last = root;
+        treeNode *lastNext = root;
+        std::queue<treeNode*> sq;
+        sq.push(root);
+        while(!sq.empty()){
+            treeNode *tmp = sq.front();
+            sq.pop();
+            std::cout<<tmp->val<<" ";
+            if(tmp->left){
+                sq.push(tmp->left);
+                lastNext = tmp->left;
+            }    
+            if(tmp->right){
+                sq.push(tmp->right);
+                lastNext = tmp->right;
+            } 
+            if(tmp == last){
+                std::cout<<std::endl;
+                last = lastNext;   
+            }                
+        }                    
+    }      
+    void dfs(treeNode *root, std::stack<treeNode*> &s){
+        if(NULL == root)return;
+        s.push(root);
+        std::cout<<root->val<<" ";
+        dfs(root->left, s);
+        dfs(root->right, s);
+        s.pop();        
+    }        
+    void dfs(treeNode *root){
+        if(NULL == root)return;
+        std::stack<treeNode*> s;
+        dfs(root, s);               
+    }        
 }
