@@ -36,4 +36,11 @@ void removeNode(listNode *root, int value){
     }
 }
 
-
+void printReverse(listNode *root){
+    if(NULL != root){
+        if(NULL != root->next){
+            printReverse(root->next);   
+        }
+        std::cout<<root->val<<" ";
+    }                    
+}
