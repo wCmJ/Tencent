@@ -1,0 +1,48 @@
+排列1：
+“abc"  ->  abc/acb/bac/bca/cab/cba
+void output(string &s, int index){
+    if(index >= s.size()){
+        std::cout<<s<<std::endl;
+        return;
+    }
+    for(int i = index; i < s.size();++i){
+        char t = s[i];
+        s[i] = s[index];
+        s[index] = t;
+        
+        output(s, index + 1);
+        
+        t = s[i];
+        s[i] = s[index];
+        s[index] = t;
+    }    
+}
+void output(string &s){
+    if(s.empty())return;
+    output(s, 0);
+}
+
+排列2：
+"a","b","c"  ->  "a","b","c","ab","ac","bc","abc"
+
+void output2(vector<string> &s){
+    if(s.empty())return;
+    vector<string> v = s;
+    vector<int> num(s.size(),0);
+    for(int i = 0;i<s.size();++i){
+        num[i] = i + 1;
+    }
+    int i = 0;
+    while(i < v.size()){
+        int index = num[i];
+        while(index < s.size()){
+            v.push_back(v[i] + s[index]);
+            num.push_back(index+1);
+            ++index;
+        }
+        ++i;    
+    }
+    for(auto s: v){
+        std::cout<<s<<std::endl;
+    }
+}
