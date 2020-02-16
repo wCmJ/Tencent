@@ -17,6 +17,12 @@ namespace traversal{
         treeNode(int v):val(v),left(NULL),right(NULL){}
     };
 
+    void convertInsert(treeNode* root, treeNode **pLastNode){
+        
+        
+    }    
+    
+    
     void preorder(treeNode *root){
         if(NULL != root){
             std::cout<<root->val<<" ";
