@@ -1,0 +1,31 @@
+建立连接：
+    正常流程：
+        client              server
+    1.  syn/seq=x  
+    2.                      syn/ack=x+1/seq=y
+    3.  ack=y+1
+    client状态变化： closed -> syn_sent -> established
+    server状态变化： listen -> syn_recv -> established
+    目的：分配资源/初始化序列号
+    问题：
+        1.client发送syn后，断开连接，此时server的syn队列中已存在该连接请求，会按照间隔1s/2s/4s/16s/32s总共发送5次syn+ack.
+          该连接请求在队列中存在时间大约60s。由于server的队列有上限，当短时间内存在大量此类连接时，正常的新连接请求将会被拒绝。
+    解决办法：修改server的相关参数，例如重传次数
+    
+释放连接：
+    主动释放方状态变化： established -> fin_wait_1 -> fin_wait_2 -> time_wait
+    被动释放方状态变化： established -> close_wait -> last_ack
+    
+    同时释放时状态变化： established -> fin_wait_1 -> closing -> time_wait
+    
+    time_wait:
+        目的： 1.重发ack，保证对端正常关闭
+               2.保证此连接的所有数据在网络中消失
+        如果不进入time_wait状态：
+            当ack丢失时，对端重发fin，此时将会对此fin包回复rst，对端收到rst之后，对一个已经关闭的连接进行写操作，会导致broken pipe错误，无法正常关闭
+            
+    
+
+
+
+
