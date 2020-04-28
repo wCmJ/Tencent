@@ -67,6 +67,13 @@ namespace GRAPH{
 				{
 					while((-1 < j) && (!exist(i, --j)));//逆向顺序查找
 					return j;
+					
+					for(int idx = --j;idx >= 0;--idx){
+							if(E[i][j] != NULL)}
+									return j;
+							}					
+					}
+					return -1;
 				}
 				int firstNbr(int i){
 					return nextNbr(i, n);
@@ -98,6 +105,7 @@ namespace GRAPH{
 				    return eBak;
 				}
 
+				
 
 				Tv& vertex(int i){return v[i].data;}
 				int inDegree(int i){return v[i].inDegree;}
