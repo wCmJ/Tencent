@@ -24,17 +24,18 @@ public:
     int parent(int idx){
         if(idx < 0 || idx >= _size)return -1;
         while(_parent[idx] != idx){
+            _parent[idx] = _parent[_parent[idx]];//优化点，降低树的高度
             idx = _parent[idx];
         }
         return idx;
     }
 
-    int connect(int x, int y){
+    int connect(int x, int y){//连接两个节点
         if(x <0 || x >= _size || y < 0 || y >= _size)return -1;
         int x_parent = parent(x);
         int y_parent = parent(y);
         if(x_parent == y_parent){
-            return 1;//有环
+            return 1;//有环。在连接之前，这两个节点有共同的父节点，连接后，必有环
         }
         _parent[x_parent] = y_parent;
         return 0;//无环
