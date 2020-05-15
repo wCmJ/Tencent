@@ -39,7 +39,7 @@ private:
         }
         if(max_idx != idx){
             _data[max_idx] = _data[max_idx] ^ _data[idx];
-            _data[_idx] = _data[max_idx] ^ _data[idx];
+            _data[idx] = _data[max_idx] ^ _data[idx];
             _data[max_idx] = _data[max_idx] ^ _data[idx];   
             construct_node(max_idx, size);
         }           
