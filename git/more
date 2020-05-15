@@ -1,0 +1,18 @@
+.git/objects:
+    store hash-value of objects.
+    objects:
+        blob:
+        tree:
+        commit:
+        tag:
+        
+    git cat-file -t|-p hash        
+            
+git cherry-pick:
+
+git rebase:
+
+git merge:
+
+
+        
