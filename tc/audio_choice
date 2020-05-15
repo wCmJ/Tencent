@@ -1,0 +1,13 @@
+audio_frame:
+    enum vad;
+    enum speech_type;
+    u32_t time_stamp;//rtp ts of the first sample
+    int samples_per_chnl;
+    
+choice_select:
+    input: uuid/chan_params
+        chan_params:
+            pkt_type/up_vad/log_energy/log_ever/rtp_type
+            
+
+    
