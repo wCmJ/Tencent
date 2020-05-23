@@ -39,15 +39,15 @@ int josech(int n, int m){
 s = "9,3,4,#,#,1,#,#,2,#,6,#,#"  true
 */
 bool isValid(string s){
-    int slot = 1;
+    int slot = 1;//初始化一个槽位
     for(int i = 0;i<s.size();){
-        --slot;
+        --slot;//消耗一个槽位
         if(slot < 0)return false;
         if(s[i] == '#'){
             i += 2;   
         }
         else{//number
-            slot += 2;
+            slot += 2;//增加两个槽位
             while(i < s.size() && s[i] != ',')++i;
             ++i;
         }
