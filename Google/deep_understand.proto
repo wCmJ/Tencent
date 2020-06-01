@@ -1,0 +1,13 @@
+installation:
+    pre: autoconf/automake/libtoo/curl/g++/unzip/make
+    
+
+
+syntax = "proto3";
+package test;
+import "project/ip.proto";
+
+message User{
+
+}
+
