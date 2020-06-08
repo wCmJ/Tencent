@@ -19,10 +19,19 @@ map删除元素导致迭代器失效，解决办法：
     }
 
 四种转型：少用转型
-    static_cast<>
-    dynamic_cast<>
-    const_cast<>
-    reinterpret_cast<>
+    static_cast<>:基本类型转换，增加const属性，
+    dynamic_cast<>:父子类型转换
+    const_cast<>:去除const属性
+    reinterpret_cast<>:重新解释字节的意义，一般使用类型指针的转换。使用者需要确保类型的正确性。
+    
+    在转换指针的时候，static_cast<>和reinterpret_cast基本一致，父子类型指针转换除外。
+    static_cast会对指针进行修正，保证其结果正确指向父对象或子对象，但reinterpret_cast不会。
+    Cp:public Ap, public Bp;
+    Cp cc;// Ap | Bp
+	Bp* pb = &cc;// to Bp
+	Ap* pa = &cc;// to Ap
+	Cp* c1 = static_cast<Cp*>(pb);// to Ap
+	Cp* c2 = reinterpret_cast<Cp*>(pb);// to Bp
     
 使用RAII防止资源泄漏
     
