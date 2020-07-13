@@ -8,6 +8,83 @@
         
     git cat-file -t|-p hash        
             
+
+git add file
+git commit -m "comment"
+git log
+git reflog
+git reset --hard HEAD^/commit_id
+git reset HEAD file
+git checkout -- file
+git rm file & git commit -m ""
+
+git remote add origin address
+git push -u origin master
+git clone address
+
+git branch
+git branch name
+git checkout name / git switch name
+git checkout -b name / git switch -c name
+git merge name 合并name分支到当前分支 
+    1.解决冲突
+    2.git add
+    3.git commit
+git merge --no-ff -m "no fast forward" name
+git branch -d name
+
+git stash//dev 
+git checkout master
+git checkout -b issue-001
+git add file1
+git commit -m "fix bug 001"
+git switch master
+git merge --no-ff -m "" issue-001
+git switch dev
+git stash list
+    git stash apply & git stash drop
+    git stash pop
+git cherry-pick commit-id//把commit-id对应的修改提交到当前分支上
+
+git branch -D name//强制删除分支
+
+git remote//查看远程库的信息
+git remote -v//查看远程库更详细的信息
+git push origin master
+git push origin dev
+git checkout -b dev origin/dev//创建远程origin的dev分支到本地
+当你提交时，发现提交失败，因为在你修改过程中，其它小伙伴也对该文件做了修改，并且已经提交。
+    1.git branch --set-upstream-to=origin/dev dev
+    2.git pull
+    3.手动解决冲突
+    4.git commit
+    5.git push origin dev
+
+git rebase
+    对同一个分支:rebase可以把本地未push的分叉提交整理成直线
+    两个分支：
+        git checkout expe
+        git rebase master
+    多个分支：
+        git rebase --onto master server client
+
+        
+
+
+git tag v1.0//打标签
+git tag//查看所有标签
+git tag v0.9 commit-id//针对某次提交打标签
+git show v0.9
+git tag -a v0.1 -m "version 0.1 released" commit-id//-a 指定标签名， -m 指定说明文字
+git push origin v1.0
+git push origin --tags
+git tag -d v0.1//本地删除
+git push origin :refs/tags/v0.1
+
+
+
+
+
 git cherry-pick:
 
 git rebase:

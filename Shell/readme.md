@@ -1,6 +1,5 @@
 基本命令：
-    awk | 
-    
+    awk | alias    
     cd | cp | chown | chgrp | cat | cut | chmod | 
     df | du | dd
     file | find | 
@@ -16,3 +15,8 @@
     vim | vi
     which | whereis | wc
     
+----------------------------------------------------------------
+编辑用户根目录下.bash_profile文件，增加alias选项，可持久化该命令。
+
+
+

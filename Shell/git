@@ -1,10 +1,23 @@
-git基本命令：
+git基本命令：	
 	git clone
 	git add
 	git commit
 	git rm
 	git rebase
 	git diff
+
+git 配置：
+	//用户信息
+		git config --global user.email ""
+		git config --global user.name ""
+	//文本编辑器
+		git config --global core.editor emacs/vi/vim
+	//差异分析工具
+		git config --global merge.tool vimdiff
+	//查看配置信息
+		git config --list
+
+
 	
 
 
