@@ -126,6 +126,123 @@ character 6:
 
 cin/cout/cerr/endl/ends/flush/unitbuf/nounitbuf/    
 程序崩溃时，输出数据很可能停留在缓冲区，没有被刷新
+cin.tie(&cout);//将输入关联到输出上，读取cin时，会刷新cout
+
+ifstream:从一个给定文件读取数据
+ofstream:向一个给定文件写入数据
+
+
+
+resize: 增大或缩小容器
+    如果当前大小大于新大小，尾部元素会被删除
+    如果当前大小小于新大小，新元素被添加到尾部
+reverse(n):分配至少能保存n个元素的空间
+size:目前已经保存了多少个元素
+capacity:不分配新内存空间的前提下最多可以保存多少个元素
+shrink_to_fit():请将capacity()减少至与size()相同大小
+
+vector的erase函数会返回下一个有效的迭代器
+顺序容器适配器：
+    stack
+    queue
+    priority_queue
+
+泛型算法：
+    find(begin, end, val)
+    accumulate(begin, end, sum)
+    equal(r1.cbegin(), r1.cend(), r2.cbegin())//r2中的元素数目至少与r1一样多
+    fill(begin, end, val)//赋值操作
+    fill_n(iterator, size, val)//安全操作
+    back_iterator(vec);//vector<int> vec,尾后迭代器
+    copy(begin, end, a2)//将begin和end的内容拷贝至a2
+    replace(begin, end, val, target)
+    replace_copy(begin, end, iterator, val, target)
+    unique(begin, end)
+
+lambda表达式：
+    [capture list](parameters) -> return type {function body;}
+    必须包含捕获列表和函数体，参数列表和返回类型可以省略
+    capture list:lambda所在函数中定义的局部变量的列表
+    auto f = []{return 42;}
+    std::cout<<f()<<std::endl;
+    值捕获：lambda创建时拷贝值，随后修改不会影响lambda内对应的值。若要修改该值，需加mutable
+        auto f = [v1]()mutable{return ++v1;}
+    引用捕获
+    函数体可以直接使用lambda所在函数外定义的对象
+    函数体中包含return之外的语句时，未指明return类型，返回void
+
+关联容器：
+    map: 红黑树
+    set：红黑树
+    multimap：红黑树
+    multiset：红黑树
+
+    unordered_map：哈希表
+    unordered_set：哈希表
+    unordered_multimap：哈希表
+    unordered_multiset：哈希表
+
+bool comp(int a, int b){
+    return a > b;
+}
+std::multiset<int, decltype(comp)*> nums(comp);
+
+
+动态内存：
+    静态内存：所有函数外的变量/函数内部static变量/类内static变量，由编译器负责创建/销毁
+    栈内存：函数内部非static变量，由编译器负责创建/销毁
+    动态内存：new/malloc，由程序创建/销毁
+
+    智能指针行为类型普通指针，自动释放所指的对象
+    #include<memory>//类模板
+    shared_ptr:允许多个指针指向同一个对象
+    unique_ptr:独占所指向的对象
+    weak_ptr:弱引用，指向shared_ptr所管理的对象
+
+    shared_ptr:
+        shared_ptr p = make_shared<T> (arg);
+        shared_ptr<T> p(q);
+        p = q;//递减p所指对象的计数器，如果为0，则释放所指对象；递增q所指对象
+        
+move:
+    move告诉编译器：我们有一个左值，但是希望像一个右值一样处理它
+    右值引用：绑定到右值的引用，只能绑定一个将要销毁的对象
+
+移动构造函数 & 移动赋值运算符
+    从给定对象窃取资源，而不是拷贝资源
+    移动构造函数：
+        第一个参数是右值引用，其它所有参数必须由默认实参
+        一旦移动完成，源对象处于销毁状态
+        strvec::strvec(strvec && s) noexcept{//noexcept在声明和定义时，均需带上
+
+        }
+        编写一个不抛出异常的移动操作时，应该将此事通知标准库
+
+    移动赋值运算符：
+        必须处理自赋值
+        
+面向对象程序设计：
+    基于三个基本概念：数据抽象、继承、动态绑定
+    数据抽象：将类的接口和实现分离
+    继承：定义相似类型并对相似关系建模
+    动态绑定：一定程度上忽略相似类型的区别，以统一的方式使用它们
+
+    对于某些函数，派生类定义自己的版本，采用虚函数。
+    C++中，使用基类的引用或指针调用虚函数时将发生动态绑定
+    final override
+    不能将基类直接转换为派生类
+        如果基类中含有虚函数，可以使用dynamic_cast请求一个类型转换，将在运行时执行安全检查。
+    如果我们已知某个基类向派生类的转换是安全的，则可以使用static_cast来强制覆盖掉编译器的检查工作
+
+    含有纯虚函数的类是抽象基类，不能创建抽象基类的对象
+    class默认是private继承，struct默认是public继承
+    
+
+
+
+
+
+    
 
 
 
