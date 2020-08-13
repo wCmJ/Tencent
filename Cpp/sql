@@ -1,0 +1,128 @@
+
+select:
+
+where:
+
+in:
+    select * from customers where state IN ('va', 'fl', 'ga');
+    select * from customers where state NOT IN ('va', 'fl', 'ga');
+
+between:
+    select * from customers where birth_date between '1990-01-01' and '2000-01-01';
+
+like:
+    select * from customers where last_name LIKE 'b%';    
+
+REGEXP:
+
+is NULL:
+
+order by(desc):
+    default by primary key
+
+limit:
+    limit 3;
+    limit 6, 3;  from 7-9
+
+inner join:
+
+JOIN | LEFT JOIN | RIGHT JOIN | NATURAL JOIN | CROSS JOIN
+
+
+CREATE TABLE NAME AS
+
+INSERT INTO NAME ()
+VALUES ()
+
+UPDATE NAME
+SET
+
+DELETE FROM NAME
+WHERE
+
+
+MAX() | MIN() | AVG() | SUM() | COUNT()
+COUNT(COLUMN): NOT NULL
+COUNT(*): ALL ROWS
+COUNT(DISTINCT column): non-duplicate
+
+
+select 
+    'total' AS data_range,
+    SUM() AS total_sales,
+    SUM() AS total_payments,
+    SUM() AS exp
+FROM invoices
+WHERE invoice_data BETWEEN '2019-01-01' AND '2019-12-31'
+UNION
+select 
+    'FIRST HALF' AS data_range,
+    SUM() AS total_sales,
+    SUM() AS total_payments,
+    SUM() AS exp
+FROM invoices
+WHERE invoice_data BETWEEN '2019-01-01' AND '2019-06-30'
+
+
+GROUP BY:
+    SELECT 
+        client_id,
+        SUM(invoice_data) AS total_sales
+    FROM invoices
+    GROUP BY client_id;
+
+    SELECT 
+        p.date,
+        m.name
+    -- sum(p.amount) as total_payments
+    FROM sql_invoicing.payments p
+    JOIN payment_methods m
+        ON p.payment_method = m.payment_method_id
+    GROUP BY p.date, m.name
+
+
+HAVING:
+    use after group by
+    where在分组之前筛选数据
+    having在分组之后筛选数据
+
+
+    SELECT 
+        c.customer_id,
+        c.first_name,
+        c.last_name,
+        SUM(oi.quantity * oi.unit_price) AS total_sales
+    FROM sql_store.customers c
+    JOIN orders o
+        using (customer_id)
+    JOIN order_items oi
+        using (order_id)
+    where state = 'VA'
+    GROUP BY c.customer_id
+    HAVING total_sales > 100
+
+WITH ROLLUP:
+    对数据汇总 sum
+
+ANY 作用和 IN（）一样
+>ALL 作用和 > MAX()一样
+
+
+Transaction:
+    ACID:
+        Atomicity:
+            a single unit
+
+        Consistency:
+            complete state
+        
+        Isolation:
+            Transactions are not dependent
+        
+        Durability:
+            if transaction has been uploaded, it works forever.
+            
+
+
+
+

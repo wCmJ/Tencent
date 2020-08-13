@@ -239,6 +239,59 @@ ssh:
         基于密钥的安全验证：
             需要在本地生成密钥对后将公钥传送至服务端，进行公共密钥的比较
 
+nginx / apache / tomcat
+
+安装Apache服务程序：
+    yum install httpd
+    vim /etc/httpd/conf/httpd.conf
+
+
+DNS:
+    用户习惯域名，计算机主机只能通过IP识别对方主机，所以需要DNS域名解析服务
+    正向解析：根据主机名查找对应的IP
+    反向解析：根据IP地址查找对应的主机名
+    协议采用目录树的层次结构记录域名与IP地址的映射对应关系，形成一个分布式的数据库系统。
+    单靠几台DNS服务器不能满足全球如此多用户的请求，分为主服务器、从服务器、缓存服务器
+    递归查询：客户机向DNS服务器查询
+    迭代查询：DNS服务器向其它DNS服务器查询
+
+客户机查询流程：
+    1.检查HOSTS文件
+    2.检查主机本地缓存
+    3.DNS区域信息解析库
+    4.检查服务器本地缓存
+    5.向根域DNS发起查询
+    6.向.com域DNS发起查询
+    7.向Linuxprobe域发起查询
+    8.向www域DNS发起查询
+
+
+DHCP:
+    客户机             服务端
+            发现->
+            <-提供
+            请求->
+            <-确认
+
+
+使用源码安装：
+    1.tar zxvf file.tar.gz
+    2.cd filedirectory
+    3../configure --prefix=/usr/local/program
+    4.make
+    5.make install
+
+
+部署LNMP架构：
+    LNMP(linux + nginx + mysql + php)
+
+    firewall-cmd --permanent --add-service=mysql
+    firewall-cmd --permanent --add-service=http
+    firewall-cmd --reload
+
+
+
+    
 
 
 

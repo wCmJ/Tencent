@@ -175,7 +175,7 @@ lambda表达式：
     map: 红黑树
     set：红黑树
     multimap：红黑树
-    multiset：红黑树
+    multiset：.红黑树
 
     unordered_map：哈希表
     unordered_set：哈希表
@@ -239,10 +239,72 @@ move:
     
 
 
+类与类之间有委托关系：
+    class A{
+        vector<B*> m_views;
+    public:
+        void attach(B* b){
+            m_views.push_back(b);
+        }
+        void nofity(){
+            for(auto p: m_views){
+                p->update();
+            }
+        }
+    };
+    class B{
+    public:
+        virtual void update() = 0;
+    };
+    观察者模式↑
+
+    模板方法模式：
+        定义操作框架，将这些步骤延迟加载到子类中
+
+    原型模式：
+        基类：能够存储未来定义的类指针
+        子类：构建静态对象，构造函数中将该对象加入基类中。
 
 
 
-    
+虚拟继承：
+    decltype：产生的是在编译时即可确定的声明类型
+    typeid：根据对象的类型来确定，即可编译时确定，也可运行时确定
+
+    现代的C++编译器都采用了表格驱动的对象模型，所有虚函数都以一个表格的方式存放在一起。
+    每个函数的偏移量在基类型和导出类型中均相同，这使得虚函数相对于表格首地址的偏移量可以在编译时确定
+    虚函数表格的首地址存放在每一个对象中，称为虚指针，始终位于对象的起始地址。
+
+    对于多态类型，除了要在运行时确定虚函数地之外，还需要提供运行时类型信息RTTI
+    一个解决方案是，将类型信息的地址放入到虚表中，为了避免虚函数表长度对其位置的影响，g++将它放在虚函数表的前面
+
+    单链继承中，每一个派生类型都包含了其基类型的数据以及虚函数，这些虚函数可以按照继承顺序，一次排列在同一张虚表之中，因此只需要一个虚指针即可。
+
+    多继承内存模型：
+        struct A{
+            int ax;
+            virtual void f0(){}
+        };
+
+        struct B{
+            int bx;
+            virtual void f1(){}
+        };
+
+        struct C: public A, public B{
+            int cx;
+            virtual void f0(){} override;
+            virtual void f1(){} override;            
+        };
+
+        0   -   struct A
+        0   -   vptr_A
+        8   -   int ax
+        16  -   struct B
+        16  -   vptr_B
+        24  -   int bx
+        28  -   int cx
+        sizeof :32  align: 8    
 
 
 
